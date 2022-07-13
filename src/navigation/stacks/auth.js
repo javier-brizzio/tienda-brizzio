@@ -1,8 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../../screens/Home";
-import Breads from "../../screens/Breads";
-import Details from "../../screens/Details";
+import Register from "../../screens/Register";
+import Access from "../../screens/Access";
 import { COLORS } from "../../../constants/colors";
 
 const Stack = createStackNavigator();
@@ -16,8 +15,7 @@ export default () => (
       headerTitleStyle: { fontWeight: "bold" },
     }}
   >
-    <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen name="Breads" component={Breads} />
-    <Stack.Screen name="Details" component={Details} />
+    <Stack.Screen name="Register" component={Register} />
+    <Stack.Screen name="Login" component={Access} />
   </Stack.Navigator>
 );

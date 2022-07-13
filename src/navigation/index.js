@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Main from "./stacks";
+import ShopNavigator from "./tabs";
+import AuthNavigator from "./stacks/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../app/firebase";
 
-export default () => (
-  <NavigationContainer>
-    <Main />
-  </NavigationContainer>
-);
+export default () => {
+  const [isLogged, setIsLogged] = useState(false);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogged(true);
+      } else {
+        setIsLogged(false);
+      }
+    });
+  });
+  return (
+    <NavigationContainer>
+      {isLogged ? <ShopNavigator /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
+};
